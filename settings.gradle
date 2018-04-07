@@ -1,0 +1,1 @@
+include ':app', ':xmark-annotation', ':xmark-runtime', ':xmark-plugin'

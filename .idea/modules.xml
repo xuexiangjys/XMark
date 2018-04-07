@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/XMark.iml" filepath="$PROJECT_DIR$/XMark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xmark-annotation/xmark-annotation.iml" filepath="$PROJECT_DIR$/xmark-annotation/xmark-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xmark-plugin/xmark-plugin.iml" filepath="$PROJECT_DIR$/xmark-plugin/xmark-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xmark-runtime/xmark-runtime.iml" filepath="$PROJECT_DIR$/xmark-runtime/xmark-runtime.iml" />
+    </modules>
+  </component>
+</project>
