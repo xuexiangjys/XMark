@@ -12,7 +12,11 @@
 
 - JakeWharton的[hugo](https://github.com/JakeWharton/hugo)的所有特点。
 
+- 内置默认的logcat打印突破了4000的打印限制。
+
 - 支持日志的自定义打印（不仅简单的Logcat）。你可以使用我的[XLog](https://github.com/xuexiangjys/XLog)进行扩展。
+
+- 支持设置日志的打印权限。
 
 ## 1、演示（请star支持）
 
@@ -39,7 +43,7 @@ buildscript {
     ···
     dependencies {
         ···
-        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.0'
+        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.1'
     }
 }
 ```
@@ -51,15 +55,82 @@ apply plugin: 'com.xuexiang.plugin.xmark' //引用xmark插件
 
 dependencies {
     ···
-    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.0'  //添加依赖
+    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.1'  //添加依赖
 }
 
 ```
 
+### 2.2、设置日志是否打印
+
+```
+
+XMark.debug(true); //默认是false
+
+```
+
+### 2.3、使用@MarkLog进行埋点
+
+1.记录方法的执行
+
+priority： 打印日志的优先级
+```
+@MarkLog
+private void printDemo1(String lab, String name) {
+    Log.d("printing", lab + name);
+}
+
+@MarkLog(priority = Log.ERROR)
+private String printDemo2(String lab, String name) {
+    return lab + name;
+}
+```
+
+2.记录类的创建
+
+```
+@MarkLog
+static class Greeter {
+    private final String name;
+
+    Greeter(String name) {
+        this.name = name;
+    }
+
+    private String sayHello() {
+        return "Hello, " + name;
+    }
+}
+```
+
+### 2.4、修改日志的打印方式
+
+可在应用初始化的Application下进行如下操作：
+
+```
+XMark.setLogger(new ILogger() {  //设置日志打印的实现接口
+    @Override
+    public boolean isDebug() {
+        return false;
+    }
+
+    @Override
+    public void debug(boolean isDebug) {
+
+    }
+
+    @Override
+    public void log(int priority, String tag, String msg) {
+        ···打印的方法
+    }
+});
+
+```
+
+
 ## 特别感谢
 https://github.com/JakeWharton/hugo
 
-[xmsvg]: https://img.shields.io/badge/XMark-v1.0.0-brightgreen.svg
+[xmsvg]: https://img.shields.io/badge/XMark-v1.0.1-brightgreen.svg
 [xm]: https://github.com/xuexiangjys/XMark
 [apisvg]: https://img.shields.io/badge/API-14+-brightgreen.svg
 [api]: https://android-arsenal.com/api?level=19

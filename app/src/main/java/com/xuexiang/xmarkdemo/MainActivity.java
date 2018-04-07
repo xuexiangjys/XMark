@@ -25,6 +25,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Charming", charmer.askHowAreYou());
 
         startSleepyThread();
+
+        printDemo1("姓名：", "薛翔");
+
+        printDemo2("姓名：", "薛翔");
+    }
+
+    @MarkLog
+    private void printDemo1(String lab, String name) {
+        Log.d("printing", lab + name);
+    }
+
+    @MarkLog(priority = Log.ERROR)
+    private String printDemo2(String lab, String name) {
+        return lab + name;
     }
 
 
@@ -36,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @MarkLog
+    @MarkLog(priority = Log.ERROR)
     private int fibonacci(int number) {
         if (number <= 0) {
             throw new IllegalArgumentException("Number must be greater than zero.");
