@@ -26,6 +26,7 @@ import com.xuexiang.xmark.XMark;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -38,6 +39,7 @@ import java.util.concurrent.TimeUnit;
  * @author xuexiang
  * @date 2018/4/7 下午6:01
  */
+@Aspect
 public class MarkLogAspectJ {
 
     @Pointcut("within(@com.xuexiang.xmark.annotation.MarkLog *)")

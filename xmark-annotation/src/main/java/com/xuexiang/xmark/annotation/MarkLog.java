@@ -24,7 +24,6 @@ import java.lang.annotation.Target;
 /**
  * 埋点记录注解
  * @author xuexiang
- * @date 2018/4/7 下午5:55
  */
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})

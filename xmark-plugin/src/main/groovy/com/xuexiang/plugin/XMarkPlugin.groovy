@@ -23,7 +23,6 @@ import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.compile.JavaCompile
 
 /**
  * @使用ajc编译java代码 ， 同 时 织 入 切 片 代 码

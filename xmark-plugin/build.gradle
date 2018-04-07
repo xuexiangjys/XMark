@@ -22,7 +22,9 @@ sourceCompatibility = JavaVersion.VERSION_1_7
 dependencies {
     implementation gradleApi()//gradle sdk
     implementation localGroovy()//groovy sdk
-//    implementation deps.android_gradle_plugin
+    implementation deps.android_gradle_plugin
     implementation 'org.aspectj:aspectjtools:1.8.9'
     implementation 'org.aspectj:aspectjrt:1.8.9'
 }
+
+apply from: "https://raw.githubusercontent.com/xuexiangjys/XUtil/master/JitPackUpload.gradle"

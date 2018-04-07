@@ -20,10 +20,6 @@ import android.app.Application;
 
 import com.xuexiang.xmark.XMark;
 
-/**
- * @author xuexiang
- * @date 2018/4/7 下午7:21
- */
 public class App extends Application {
 
     @Override
