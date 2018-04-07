@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.xuexiang.plugin.xmark'
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -25,6 +27,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.support.app_compat
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation project(':xmark-runtime')
-    implementation project(':xmark-plugin')
+
+    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:0.0.1'
 }
