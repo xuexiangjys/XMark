@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         startSleepyThread();
 
-        printDemo1("姓名：", "薛翔");
+        printDemo1("my name is：", "Tom");
 
-        printDemo2("姓名：", "薛翔");
+        printDemo2("your name is：", "Jerry");
     }
 
     @MarkLog
