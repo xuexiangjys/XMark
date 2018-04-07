@@ -55,7 +55,7 @@ public class LogcatLogger implements ILogger {
      */
     @Override
     public void log(String tag, String msg) {
-        if (mIsDebug) {
+        if (isDebug()) {
             Log.v(tag, msg);
         }
     }

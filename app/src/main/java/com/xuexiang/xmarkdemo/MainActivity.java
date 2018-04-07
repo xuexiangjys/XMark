@@ -1,9 +1,9 @@
 package com.xuexiang.xmarkdemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 
+import com.xuexiang.xmark.XMark;
 import com.xuexiang.xmark.annotation.MarkLog;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @MarkLog
     private void printArgs(String... args) {
         for (String arg : args) {
-            Log.i("Args", arg);
+            XMark.log("Args", arg);
         }
     }
 }
