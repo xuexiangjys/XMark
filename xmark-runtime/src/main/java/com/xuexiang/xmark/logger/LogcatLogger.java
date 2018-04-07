@@ -16,9 +16,6 @@
 
 package com.xuexiang.xmark.logger;
 
-import android.util.Log;
-
-
 /**
  * 默认Logcat日志记录
  *
@@ -50,15 +47,15 @@ public class LogcatLogger implements ILogger {
     /**
      * 打印信息
      *
-     * @param tag
-     * @param msg
+     * @param priority 优先级
+     * @param tag      标签
+     * @param msg      信息
      */
     @Override
-    public void log(String tag, String msg) {
-        if (isDebug()) {
-            Log.v(tag, msg);
-        }
+    public void log(int priority, String tag, String msg) {
+       if (isDebug()) {
+           LogUtils.log(priority, tag, msg);
+       }
     }
-
 
 }

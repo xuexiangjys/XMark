@@ -22,6 +22,7 @@ import android.os.Trace;
 import android.support.annotation.NonNull;
 
 import com.xuexiang.xmark.XMark;
+import com.xuexiang.xmark.annotation.MarkLog;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -63,16 +64,16 @@ public class MarkLogAspectJ {
     } //构造器切入点
 
 
-    @Around("method() || constructor()")
-    public Object logAndExecute(ProceedingJoinPoint joinPoint) throws Throwable {
-        enterMethod(joinPoint);
+    @Around("(method() || constructor()) && @annotation(markLog)")
+    public Object logAndExecute(ProceedingJoinPoint joinPoint, MarkLog markLog) throws Throwable {
+        enterMethod(joinPoint, markLog);
 
         long startNanos = System.nanoTime();
         Object result = joinPoint.proceed();
         long stopNanos = System.nanoTime();
         long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
 
-        exitMethod(joinPoint, result, lengthMillis);
+        exitMethod(joinPoint, markLog, result, lengthMillis);
 
         return result;
     }
@@ -83,7 +84,7 @@ public class MarkLogAspectJ {
      *
      * @param joinPoint
      */
-    private void enterMethod(ProceedingJoinPoint joinPoint) {
+    private void enterMethod(ProceedingJoinPoint joinPoint, MarkLog markLog) {
         if (!XMark.isDebug()) return;
 
         CodeSignature codeSignature = (CodeSignature) joinPoint.getSignature();
@@ -96,7 +97,7 @@ public class MarkLogAspectJ {
         //记录并打印方法的信息
         StringBuilder builder = getMethodLogInfo(methodName, parameterNames, parameterValues);
 
-        XMark.log(asTag(cls), builder.toString());
+        XMark.log(markLog.priority(), asTag(cls), builder.toString());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             final String section = builder.toString().substring(2);
@@ -139,7 +140,7 @@ public class MarkLogAspectJ {
      * @param result       方法执行后的结果
      * @param lengthMillis 执行方法所需要的时间
      */
-    private void exitMethod(ProceedingJoinPoint joinPoint, Object result, long lengthMillis) {
+    private void exitMethod(ProceedingJoinPoint joinPoint, MarkLog markLog, Object result, long lengthMillis) {
         if (!XMark.isDebug()) return;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -164,7 +165,7 @@ public class MarkLogAspectJ {
             builder.append(Strings.toString(result));
         }
 
-        XMark.log(asTag(cls), builder.toString());
+        XMark.log(markLog.priority(), asTag(cls), builder.toString());
     }
 
     /**

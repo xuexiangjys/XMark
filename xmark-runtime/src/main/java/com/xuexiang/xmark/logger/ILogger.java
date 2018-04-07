@@ -38,9 +38,10 @@ public interface ILogger {
 
     /**
      * 打印信息
-     * @param tag
-     * @param msg
+     * @param priority 优先级
+     * @param tag 标签
+     * @param msg 信息
      */
-    void log(String tag, String msg);
+    void log(int priority, String tag, String msg);
 
 }

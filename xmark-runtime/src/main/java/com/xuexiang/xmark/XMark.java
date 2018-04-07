@@ -65,9 +65,9 @@ public class XMark {
      * @param tag
      * @param msg
      */
-    public static void log(String tag, String msg) {
+    public static void log(int priority, String tag, String msg) {
         if (sILogger != null) {
-            sILogger.log(tag, msg);
+            sILogger.log(priority, tag, msg);
         }
     }
 }

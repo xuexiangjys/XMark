@@ -28,5 +28,5 @@ dependencies {
     implementation deps.support.app_compat
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:0.1.0'
+    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.0'
 }
