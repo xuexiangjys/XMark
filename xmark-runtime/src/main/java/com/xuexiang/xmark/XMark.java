@@ -112,6 +112,14 @@ public class XMark {
      * @return
      */
     private static boolean enableLog(int logPriority) {
-        return sILogger != null && sIsDebug && logPriority >= sLogPriority;
+        return isDebug() && logPriority >= sLogPriority;
+    }
+
+    /**
+     * 当前是否是调试模式
+     * @return
+     */
+    public static boolean isDebug() {
+        return sILogger != null && sIsDebug;
     }
 }
