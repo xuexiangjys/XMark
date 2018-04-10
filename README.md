@@ -44,7 +44,7 @@ buildscript {
     ···
     dependencies {
         ···
-        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.1'
+        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.4'
     }
 }
 ```
@@ -52,11 +52,11 @@ buildscript {
 3.在项目的 build.gradle 中增加依赖并引用xmark插件
 
 ```
-apply plugin: 'com.xuexiang.plugin.xmark' //引用xmark插件
+apply plugin: 'com.xuexiang.xmark' //引用xmark插件
 
 dependencies {
     ···
-    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.1'  //添加依赖
+    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.4'  //添加依赖
 }
 
 ```
@@ -105,20 +105,11 @@ static class Greeter {
 
 ### 2.4、修改日志的打印方式
 
-可在应用初始化的Application下进行如下操作：
+1.可在应用初始化的Application下进行如下操作：
 
 ```
-XMark.setLogger(new ILogger() {  //设置日志打印的实现接口
-    @Override
-    public boolean isDebug() {
-        return false;
-    }
 
-    @Override
-    public void debug(boolean isDebug) {
-
-    }
-
+XMark.setLogger(new ILogger() { //设置日志打印的实现接口
     @Override
     public void log(int priority, String tag, String msg) {
         ···打印的方法
@@ -127,11 +118,20 @@ XMark.setLogger(new ILogger() {  //设置日志打印的实现接口
 
 ```
 
+2.设置打印日志的优先级
+
+如果只想打印出错信息及以上的日志，可如下设置：
+
+```
+XMark.setPriority(Log.ERROR);
+
+```
+
 
 ## 特别感谢
 https://github.com/JakeWharton/hugo
 
-[xmsvg]: https://img.shields.io/badge/XMark-v1.0.1-brightgreen.svg
+[xmsvg]: https://img.shields.io/badge/XMark-v1.0.4-brightgreen.svg
 [xm]: https://github.com/xuexiangjys/XMark
 [apisvg]: https://img.shields.io/badge/API-14+-brightgreen.svg
 [api]: https://android-arsenal.com/api?level=19

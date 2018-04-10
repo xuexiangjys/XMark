@@ -17,6 +17,7 @@
 package com.xuexiang.xmarkdemo;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.xuexiang.xmark.XMark;
 
@@ -26,5 +27,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         XMark.debug(true);
+
+        XMark.setPriority(Log.ERROR);
     }
 }
