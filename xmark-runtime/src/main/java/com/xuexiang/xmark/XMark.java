@@ -22,16 +22,36 @@ import com.xuexiang.xmark.logger.ILogger;
 import com.xuexiang.xmark.logger.LogcatLogger;
 
 /**
+ * 埋点配置
  * @author xuexiang
- * @date 2018/4/7 下午6:29
  */
 public class XMark {
 
+    /**
+     * 最大日志优先级【日志优先级为最大等级，所有日志都不打印】
+     */
+    private final static int MAX_LOG_PRIORITY = 10;
+    /**
+     * 最小日志优先级【日志优先级为最小等级，所有日志都打印】
+     */
+    private final static int MIN_LOG_PRIORITY = 0;
+
+    //===============属性==============//
     /**
      * 默认的日志记录为Logcat
      */
     private static ILogger sILogger = new LogcatLogger();
 
+    /**
+     * 是否是调试模式
+     */
+    private static boolean sIsDebug = false;
+    /**
+     * 日志打印优先级
+     */
+    private static int sLogPriority = MAX_LOG_PRIORITY;
+
+    //===============设置方法==============//
     /**
      * 设置日志记录者的接口
      *
@@ -41,12 +61,17 @@ public class XMark {
         sILogger = logger;
     }
 
-
     /**
-     * 当前是否是debug模式
+     * 设置是否开启日志记录
+     * @param isDebug
      */
-    public static boolean isDebug() {
-        return sILogger != null && sILogger.isDebug();
+    public static void debug(boolean isDebug) {
+        setDebug(isDebug);
+        if (isDebug) {
+            setPriority(MIN_LOG_PRIORITY);
+        } else {
+            setPriority(MAX_LOG_PRIORITY);
+        }
     }
 
     /**
@@ -54,20 +79,39 @@ public class XMark {
      *
      * @param isDebug
      */
-    public static void debug(boolean isDebug) {
-        if (sILogger != null) {
-            sILogger.debug(isDebug);
-        }
+    public static void setDebug(boolean isDebug) {
+        sIsDebug = isDebug;
     }
 
+    /**
+     * 设置打印日志的等级（只打印改等级以上的日志）
+     *
+     * @param priority
+     */
+    public static void setPriority(int priority) {
+        sLogPriority = priority;
+    }
+
+    //===============打印日志==============//
     /**
      * 打印日志
      * @param tag
      * @param msg
      */
     public static void log(int priority, String tag, String msg) {
-        if (sILogger != null) {
+        if (enableLog(priority)) {
             sILogger.log(priority, tag, msg);
         }
+    }
+
+
+    /**
+     * 能否打印
+     *
+     * @param logPriority
+     * @return
+     */
+    private static boolean enableLog(int logPriority) {
+        return sILogger != null && sIsDebug && logPriority >= sLogPriority;
     }
 }

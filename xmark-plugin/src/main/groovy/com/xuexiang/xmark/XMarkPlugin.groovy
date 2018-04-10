@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xuexiang.plugin
+package com.xuexiang.xmark
 
 import com.android.build.gradle.AppPlugin
 import com.android.build.gradle.LibraryPlugin

@@ -25,18 +25,6 @@ package com.xuexiang.xmark.logger;
 public interface ILogger {
 
     /**
-     * 当前是否是debug模式
-     * @return
-     */
-    boolean isDebug();
-
-    /**
-     * 设置是否是调试模式
-     * @param isDebug
-     */
-    void debug(boolean isDebug);
-
-    /**
      * 打印信息
      * @param priority 优先级
      * @param tag 标签

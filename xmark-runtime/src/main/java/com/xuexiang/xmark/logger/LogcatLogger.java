@@ -16,46 +16,77 @@
 
 package com.xuexiang.xmark.logger;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 /**
  * 默认Logcat日志记录
  *
  * @author xuexiang
- * @date 2018/3/9 上午12:33
  */
 public class LogcatLogger implements ILogger {
 
     /**
-     * 是否是调试模式
+     * logcat里日志的最大长度.
      */
-    private boolean mIsDebug = false;
+    private static final int MAX_LOG_LENGTH = 4000;
 
     /**
-     * 当前是否是debug模式
-     *
-     * @return
-     */
-    @Override
-    public boolean isDebug() {
-        return mIsDebug;
-    }
-
-    @Override
-    public void debug(boolean isDebug) {
-        mIsDebug = isDebug;
-    }
-
-    /**
-     * 打印信息
+     * 使用LogCat输出日志，字符长度超过4000则自动换行.
      *
      * @param priority 优先级
      * @param tag      标签
-     * @param msg      信息
+     * @param message  信息
      */
     @Override
-    public void log(int priority, String tag, String msg) {
-       if (isDebug()) {
-           LogUtils.log(priority, tag, msg);
-       }
+    public void log(int priority, String tag, String message) {
+        int subNum = message.length() / MAX_LOG_LENGTH;
+        if (subNum > 0) {
+            int index = 0;
+            for (int i = 0; i < subNum; i++) {
+                int lastIndex = index + MAX_LOG_LENGTH;
+                String sub = message.substring(index, lastIndex);
+                logSub(priority, tag, sub);
+                index = lastIndex;
+            }
+            logSub(priority, tag, message.substring(index, message.length()));
+        } else {
+            logSub(priority, tag, message);
+        }
+    }
+
+
+    /**
+     * 使用LogCat输出日志.
+     *
+     * @param priority 优先级
+     * @param tag      标签
+     * @param sub      信息
+     */
+    private static void logSub(int priority, @NonNull String tag, @NonNull String sub) {
+        switch (priority) {
+            case Log.VERBOSE:
+                Log.v(tag, sub);
+                break;
+            case Log.DEBUG:
+                Log.d(tag, sub);
+                break;
+            case Log.INFO:
+                Log.i(tag, sub);
+                break;
+            case Log.WARN:
+                Log.w(tag, sub);
+                break;
+            case Log.ERROR:
+                Log.e(tag, sub);
+                break;
+            case Log.ASSERT:
+                Log.wtf(tag, sub);
+                break;
+            default:
+                Log.v(tag, sub);
+                break;
+        }
     }
 
 }
