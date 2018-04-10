@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         printDemo2("your name is：", "Jerry");
     }
 
-    @MarkLog
+    @MarkLog(priority = Log.INFO)
     private void printDemo1(String lab, String name) {
         Log.d("printing", lab + name);
     }
