@@ -16,7 +16,7 @@
 
 - 支持日志的自定义打印（不仅简单的Logcat）。你可以使用我的[XLog](https://github.com/xuexiangjys/XLog)进行扩展。
 
-- 支持设置日志的打印权限。
+- 支持设置日志的打印优先级。
 
 ## 1、演示（请star支持）
 
