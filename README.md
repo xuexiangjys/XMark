@@ -10,13 +10,15 @@
 
 ## 特点
 
-- JakeWharton的[hugo](https://github.com/JakeWharton/hugo)的所有特点。
+* JakeWharton的[hugo](https://github.com/JakeWharton/hugo)的所有特点。
 
-- 内置默认的logcat打印突破了4000的打印限制。
+* 支持自定义对象序列化接口，方便打印对象。
 
-- 支持日志的自定义打印（不仅简单的Logcat）。你可以使用我的[XLog](https://github.com/xuexiangjys/XLog)进行扩展。
+* 内置默认的logcat打印突破了4000的打印限制。
 
-- 支持设置日志的打印优先级。
+* 支持日志的自定义打印（不仅简单的Logcat）。你可以使用我的[XLog](https://github.com/xuexiangjys/XLog)进行扩展。
+
+* 支持设置日志的打印优先级。
 
 ## 1、演示（请star支持）
 
@@ -44,7 +46,7 @@ buildscript {
     ···
     dependencies {
         ···
-        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.4'
+        classpath 'com.github.xuexiangjys.XMark:xmark-plugin:1.0.5'
     }
 }
 ```
@@ -56,7 +58,7 @@ apply plugin: 'com.xuexiang.xmark' //引用xmark插件
 
 dependencies {
     ···
-    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.4'  //添加依赖
+    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.5'  //添加依赖
 }
 
 ```
@@ -127,6 +129,18 @@ XMark.setPriority(Log.ERROR);
 
 ```
 
+3.设置对象序列化器，这样就不需要给每个对象重写其toString方法了。
+
+
+```
+XMark.setIObjectSerializer(new IObjectSerializer() {
+    @Override
+    public String toString(Object obj) {
+        return JsonUtil.toJson(obj); //直接转为json的对象序列化
+    }
+});
+
+```
 
 ## 特别感谢
 https://github.com/JakeWharton/hugo
@@ -137,7 +151,7 @@ https://github.com/JakeWharton/hugo
 
 ![](https://github.com/xuexiangjys/XPage/blob/master/img/qq_group.jpg)
 
-[xmsvg]: https://img.shields.io/badge/XMark-v1.0.4-brightgreen.svg
+[xmsvg]: https://img.shields.io/badge/XMark-v1.0.5-brightgreen.svg
 [xm]: https://github.com/xuexiangjys/XMark
 [apisvg]: https://img.shields.io/badge/API-14+-brightgreen.svg
 [api]: https://android-arsenal.com/api?level=14
