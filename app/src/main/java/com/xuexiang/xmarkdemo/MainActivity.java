@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         printDemo1("my name is：", "Tom");
 
         printDemo2("your name is：", "Jerry");
+
+        printPerson(new Person().setName("Jake").setAge(24).setBirthday("1994-07-15").setGender(0));
     }
 
     @MarkLog(priority = Log.INFO)
@@ -41,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         return lab + name;
     }
 
+
+    @MarkLog(priority = Log.ERROR)
+    private String printPerson(Person person) {
+        person.setAge(18);
+        return person.toString();
+    }
 
     @MarkLog
     private void printArgs(String... args) {

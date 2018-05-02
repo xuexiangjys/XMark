@@ -27,6 +27,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.support.app_compat
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.4'
-//    implementation project(':xmark-runtime')
+//    implementation 'com.github.xuexiangjys.XMark:xmark-runtime:1.0.4'
+    implementation project(':xmark-runtime')
+
+    implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.2'
 }

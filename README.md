@@ -140,4 +140,4 @@ https://github.com/JakeWharton/hugo
 [xmsvg]: https://img.shields.io/badge/XMark-v1.0.4-brightgreen.svg
 [xm]: https://github.com/xuexiangjys/XMark
 [apisvg]: https://img.shields.io/badge/API-14+-brightgreen.svg
-[api]: https://android-arsenal.com/api?level=19
+[api]: https://android-arsenal.com/api?level=14

@@ -19,6 +19,7 @@ package com.xuexiang.xmark;
 import android.support.annotation.NonNull;
 
 import com.xuexiang.xmark.logger.ILogger;
+import com.xuexiang.xmark.logger.IObjectSerializer;
 import com.xuexiang.xmark.logger.LogcatLogger;
 
 /**
@@ -42,6 +43,7 @@ public class XMark {
      */
     private static ILogger sILogger = new LogcatLogger();
 
+    private static IObjectSerializer sIObjectSerializer;
     /**
      * 是否是调试模式
      */
@@ -92,6 +94,18 @@ public class XMark {
         sLogPriority = priority;
     }
 
+    /**
+     * 设置对象序列化器
+     * @param iObjectSerializer
+     */
+    public static void setIObjectSerializer(IObjectSerializer iObjectSerializer) {
+        XMark.sIObjectSerializer = iObjectSerializer;
+    }
+
+    public static IObjectSerializer getIObjectSerializer() {
+        return sIObjectSerializer;
+    }
+
     //===============打印日志==============//
     /**
      * 打印日志
@@ -122,4 +136,6 @@ public class XMark {
     public static boolean isDebug() {
         return sILogger != null && sIsDebug;
     }
+
+
 }

@@ -14,23 +14,22 @@
  * limitations under the License.
  */
 
-package com.xuexiang.xmark.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.xuexiang.xmark.logger;
 
 /**
- * 埋点记录注解
- * @author xuexiang
+ * <pre>
+ *     desc   : 对象序列化器
+ *     author : xuexiang
+ *     time   : 2018/5/2 下午11:57
+ * </pre>
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
-public @interface MarkLog {
+public interface IObjectSerializer {
 
     /**
-     * 日志的优先级(默认是0)
+     * 将对象序列化为String
+     *
+     * @param obj 对象
+     * @return
      */
-    int priority() default 0;
+    String toString(Object obj);
 }

@@ -20,14 +20,26 @@ import android.app.Application;
 import android.util.Log;
 
 import com.xuexiang.xmark.XMark;
+import com.xuexiang.xmark.logger.IObjectSerializer;
+import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.net.JsonUtil;
 
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        XUtil.init(this);
         XMark.debug(true);
 
         XMark.setPriority(Log.ERROR);
+
+        XMark.setIObjectSerializer(new IObjectSerializer() {
+            @Override
+            public String toString(Object obj) {
+                return JsonUtil.toJson(obj);
+            }
+        });
     }
 }
